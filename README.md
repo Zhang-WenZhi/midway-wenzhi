@@ -156,3 +156,104 @@ Done in 16.9s
 封装异常公共方法
 封装常用校验规则
 ```
+
+### vscode 连接虚拟机
+
+```shell
+sudo apt update
+sudo apt install openssh-server
+sudo apt-get install ssh # 也行
+# apt-get install ssh # 没权限
+
+# vim 没有被发现 # 要安装 sudo apt install vim
+sudo vi /etc/ssh/sshd_config
+sudo nano /etc/ssh/sshd_config # 也行 # Ctrl + X键退出nano编辑器 # Ctrl + H来退出而不保存 # Ctrl + C 然后按 Y 
+# sshd_config 没有 PermitRootLogin yes # 安装ssh，即看不见PermitRootLogin
+# ssh_config 也没有 PermitRootLogin yes # 安装ssh后，sshd_config里有，ssh_config没有
+# 确认退出 # Ctrl + S来保存
+PermitRootLogin yes
+# service sshd restart # sudo systemctl restart sshd # 没有sshd服务
+service ssh restart
+sudo systemctl restart ssh # 也行
+ssh name@ip -A
+```
+
+### ubantu安装node nvm
+
+https://github.com/nvm-sh/nvm/releases
+
+```shell
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.39.7/install.sh | bash
+```
+
+```
+sudo apt install curl
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+nvm ls-remote
+
+```
+
+```shell
+# 通过git手动安装
+sudo apt install git
+cd ~/
+git clone https://github.com/nvm-sh/nvm.git .nvm
+cd ~/.nvm
+git checkout v0.39.7
+./nvm.sh
+```
+
+```shell
+# gedit或vim修改~/.bashrc和~/.profile
+sudo gedit ~/.bashrc
+sudo gedit ~/.profile
+
+# NVM_DIR对应的是自己真实存放nvm的目录
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source ~/.bashrc
+source ~/.profile
+```
+
+### ubantu 目录结构说明
+
+```shell
+├── bin # 可执行文件
+├── boot # 启动文件
+├── dev # 设备文件
+├── etc # 配置文件
+├── home # 用户目录
+├── lib # 库文件
+├── media # 媒体文件
+├── mnt # 挂载文件
+├── opt # 可选文件
+├── proc # 进程文件
+├── root # root用户目录
+├── sbin # 系统管理文件
+├── srv # 服务文件
+├── sys # 系统文件
+├── tmp # 临时文件
+├── usr # 用户文件
+└── var # 变量文件
+```
+
+```shell
+/bin 和 /sbin: 这些目录包含系统级别的可执行程序。/bin目录包含基本的系统命令，而/sbin则包含系统管理员使用的系统命令。
+/etc: 这个目录包含系统配置文件，几乎所有系统级别的配置文件都存储在这里，包括网络配置、服务配置、用户账户配置等。
+/var: 包含变量数据，包括日志文件、临时文件、邮件和其他经常变化的数据。
+/usr: 用户的应用程序和文件通常安装在此处，包括用户级别的命令和数据。
+/home: 个人用户的家目录，包括桌面、文档、音乐等个人文件。
+/boot: 包含Linux内核和引导文件的目录。
+/lib 和 /lib64: 这些目录包含系统库文件，用于支持系统运行时。
+/proc 和 /sys: 这两个是虚拟文件系统，/proc提供有关系统内核状态和进程信息的详细信息，而/sys提供有关系统硬件和内核信息的详细信息。
+/dev: 包含系统中所有设备文件的目录。
+此外，Ubuntu系统中还有一些特殊的目录，如：
+
+/root: 超级用户的home目录。
+/tmp: 应用放临时文件的地方。
+/opt: 可以用来存储不用package manager管理的软件，即存放不是用包管理器安装的软件的地方。
+/media 和 /mnt: 分别是外部设备和临时挂载点的目录，用于挂载如U盘和网络文件系统等设备。
+```
