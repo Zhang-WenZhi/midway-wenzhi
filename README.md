@@ -257,3 +257,32 @@ source ~/.profile
 /opt: 可以用来存储不用package manager管理的软件，即存放不是用包管理器安装的软件的地方。
 /media 和 /mnt: 分别是外部设备和临时挂载点的目录，用于挂载如U盘和网络文件系统等设备。
 ```
+
+
+### git CVE 版本更新
+
+```shell
+git -v
+# 或者
+git --version
+
+
+# <=2.17.1更新命令：
+git update
+
+# >2.17.1更新命令：
+git update-git-for-windows
+
+# Mac
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew update
+brew upgrade git
+
+# Debian的系统（如Ubuntu）
+sudo apt-get update
+sudo apt-get install --only-upgrade git
+
+# RPM的系统（如Fedora或CentOS）
+sudo yum update git
+sudo dnf update git # 使用的是dnf
+```
