@@ -107,3 +107,25 @@ wenzhi@wenzhi-VMware-Virtual-Platform:/usr/zogzhang/midway-wenzhi$ pnpm install 
 ```
 
 sudo chown $(whoami) /usr/zogzhang/midway-wenzhi
+
+
+###  (不管用！目录里的文件也没有权限) VSCode远程连接Remote SSH (SSH) 无法保存的解决办法
+
+未能保存“README.zh-CN.md”: 无法写入文件"vscode-remote://ssh-remote+192.168.174.128/usr/zogzhang/midway-wenzhi/README.zh-CN.md"(NoPermissions (FileSystemError): Error: EACCES: permission denied, open '/usr/zogzhang/midway-wenzhi/README.zh-CN.md')
+
+```shell
+在VSCode新建终端 
+进入到文件所在的目录
+输入如下命令修改文件相关权限，使得ssh有权限修改该文件：
+# 例如我的文件夹是 www 就是 chmod 757 www
+chmod 757 [文件夹名称]
+sudo chmod 757 midway-wenzhi
+```
+
+### 其他账户登录后，创建root密码
+
+```shell
+sudo passwd -u root # 其他账户登录，创建root密码
+sudo passwd root # 设置root用户密码
+su root # 切换到root用户
+```
